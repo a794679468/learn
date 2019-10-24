@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace='com.dgq.consumer.dao.LuckDao'>
+
+	<insert id="insertLuck" parameterType="resultMap">
+		insert into luck_data(
+			id,
+			everynper,
+			everyluck,
+			create_date,
+			update_date
+		)value(
+			id,
+			#{everynper},
+			#{everyluck},
+			now(),
+			now()
+		)
+	</insert>
+	
+	<select id="getMaxLuck" resultType="int">
+		select 
+			max(everynper)
+		from 
+			luck_data
+	</select>
+	
+	<select id="getNewLuck" resultType="resultMap">
+		select 
+			everynper,
+		    everyluck 
+	    from 
+	    	luck_data 
+    	where everynper = (select 
+    							max(everynper)
+						   from 
+					   			luck_data)
+	</select>
+	
+	<select id="getAllLuck" resultType="resultMap">
+		select everynper,
+			   everyluck
+		from luck_data 
+	</select>
+</mapper>
