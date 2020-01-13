@@ -26,7 +26,7 @@ import com.google.common.collect.Maps;
 public class LuckServiceImpl implements LuckService{
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private final static String URL = "https://m.aicai.com/kjgg/detailAll.do?agentId=2335339&vt=5&gameId=101&issueNo=";  
+	private final static String URL = "https://m.aicai.com/kjgg/detailAll.do?agentId=2335098&vt=5&gameId=101&issueNo=";  
 	
 	@Autowired
 	private LuckDao luckdao;
@@ -65,7 +65,9 @@ public class LuckServiceImpl implements LuckService{
 			if(c.equals("{{redBall}}-{{blueBall}}")){
 				a++;
 				b = 0;
-				if(a >= thisyear){
+				if(a == thisyear){
+					continue;
+				}else if( a > thisyear){
 					break;
 				}
 			}else{
@@ -87,8 +89,28 @@ public class LuckServiceImpl implements LuckService{
 
 	@Override
 	public String getRandomLuck() {
-		String luck = LuckUtil.printCP("SSQ");
-		return luck;
+		String b = "";
+		String a = "";
+		int c = 0; 
+		String d = "";
+		List<Map<String, Object>> historylist = luckdao.getAllLuck();
+		for(Map<String, Object> map:historylist){
+			d = d + "," + map.get("everyluck");
+		}
+		while(true){
+			 a = LuckUtil.printCP("SSQ");
+			if(d.contains(a)){
+				logger.info(a);
+				break;
+			}
+			b= b+","+a;
+			c++;
+			logger.info(c+"");
+		}
+//		if(d.contains(a)){
+//			this.getRandomLuck();
+//		}
+		return a;
 	}
 
 	public List<Map<String, Object>> getAllLuck() {

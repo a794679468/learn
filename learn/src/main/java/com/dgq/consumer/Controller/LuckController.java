@@ -9,11 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dgq.consumer.dao.LuckDao;
 import com.dgq.consumer.service.LuckService;
 import com.dgq.consumer.util.HttpClient;
+import com.dgq.consumer.util.LuckUtil;
 
 @RestController
 public class LuckController{
@@ -23,6 +24,11 @@ public class LuckController{
 	
 	@Autowired
 	private LuckService luckservice;
+	
+	@RequestMapping(value = "notify",method = RequestMethod.POST)
+	public ResponseEntity<?> notify(@RequestParam String message,@RequestParam String sign){
+		return new ResponseEntity<Object>(message, HttpStatus.OK);
+	}
 	
 	@RequestMapping(value = "getMyLuck",method = RequestMethod.GET)
 	public ResponseEntity<?> getLuck(String period){
@@ -52,7 +58,7 @@ public class LuckController{
 	}
 	
 	public static void main(String[] args){
-		String hmtl = HttpClient.httpPostUrlForPdf("https://m.aicai.com/kjgg/detailAll.do?gameId=101&issueNo=2019115");
+		String hmtl = HttpClient.httpPostUrlForPdf("https://m.aicai.com/kjgg/detailAll.do?agentId=2335098&vt=5&gameId=101&issueNo=2019152");
 		Document document = Jsoup.parse(hmtl);
 //		Iterator<Element> span = document.select("span[class=comm_ball red_ball]").iterator();
 		Elements spans= document.select("div[class=lotteryBall]").select("em");
@@ -64,8 +70,8 @@ public class LuckController{
 				b += els.text()+",";
 			}
 		}
+		System.out.println(b);
 //		int c = 0;
 //		++c;
-		System.out.println(b);
 	}
 }
