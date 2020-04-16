@@ -87,29 +87,35 @@ public class LuckServiceImpl implements LuckService{
 		return luckdao.getNewLuck();
 	}
 
+//	@Override
+//	public String getRandomLuck() {
+//		String b = "";
+//		String a = "";
+//		int c = 0; 
+//		String d = "";
+//		List<Map<String, Object>> historylist = luckdao.getAllLuck();
+//		for(Map<String, Object> map:historylist){
+//			d = d + "," + map.get("everyluck");
+//		}
+//		while(true){
+//			 a = LuckUtil.printCP("SSQ");
+//			if(d.contains(a)){
+//				logger.info(a);
+//				break;
+//			}
+//			b= b+","+a;
+//			c++;
+//			logger.info(c+"");
+//		}
+////		if(d.contains(a)){
+////			this.getRandomLuck();
+////		}
+//		return a;
+//	}
 	@Override
 	public String getRandomLuck() {
-		String b = "";
 		String a = "";
-		int c = 0; 
-		String d = "";
-		List<Map<String, Object>> historylist = luckdao.getAllLuck();
-		for(Map<String, Object> map:historylist){
-			d = d + "," + map.get("everyluck");
-		}
-		while(true){
-			 a = LuckUtil.printCP("SSQ");
-			if(d.contains(a)){
-				logger.info(a);
-				break;
-			}
-			b= b+","+a;
-			c++;
-			logger.info(c+"");
-		}
-//		if(d.contains(a)){
-//			this.getRandomLuck();
-//		}
+		a = LuckUtil.printCP("SSQ");
 		return a;
 	}
 
