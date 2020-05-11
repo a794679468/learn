@@ -7,12 +7,26 @@
 			id,
 			everynper,
 			everyluck,
+			red1,
+			red2,
+			red3,
+			red4,
+			red5,
+			red6,
+			blue,
 			create_date,
 			update_date
 		)value(
 			id,
 			#{everynper},
 			#{everyluck},
+			SUBSTR( #{everyluck}, 1, 2 ),
+			SUBSTR( #{everyluck}, 4, 2 ),
+			SUBSTR( #{everyluck}, 7, 2 ),
+			SUBSTR( #{everyluck}, 10, 2 ),
+			SUBSTR( #{everyluck}, 13, 2 ),
+			SUBSTR( #{everyluck}, 16, 2 ),
+			SUBSTR( #{everyluck}, 19, 2 ),
 			now(),
 			now()
 		)

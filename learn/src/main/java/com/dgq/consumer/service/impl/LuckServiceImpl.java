@@ -1,9 +1,11 @@
 package com.dgq.consumer.service.impl;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.cxf.common.util.CollectionUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import com.dgq.consumer.dao.LuckDao;
 import com.dgq.consumer.service.LuckService;
@@ -37,7 +40,7 @@ public class LuckServiceImpl implements LuckService{
 		Map<String,Object> newlcuk = luckdao.getNewLuck();
 		int a = 2003;
 		int b = 0;
-		if(!newlcuk.isEmpty()){
+		if(!ObjectUtils.isEmpty(newlcuk)){
 			a = Integer.valueOf(newlcuk.get("everynper").toString().substring(0, 4));
 			b = Integer.valueOf(newlcuk.get("everynper").toString().substring(4, 7));
 		}
