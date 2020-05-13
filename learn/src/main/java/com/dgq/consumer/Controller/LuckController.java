@@ -28,7 +28,7 @@ public class LuckController{
 	
 	@RequestMapping(value = "dgq",method = RequestMethod.POST)
 	public ResponseEntity<?> notify(@RequestParam String message,@RequestParam String sign){
-		String url =ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath("/");
+		String url = ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath("/");
 		return new ResponseEntity<Object>(url, HttpStatus.OK);
 	}
 	
