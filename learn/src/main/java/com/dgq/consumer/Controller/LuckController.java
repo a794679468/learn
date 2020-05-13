@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.ContextLoader;
 
 import com.dgq.consumer.service.LuckService;
 import com.dgq.consumer.util.HttpClient;
@@ -25,9 +26,10 @@ public class LuckController{
 	@Autowired
 	private LuckService luckservice;
 	
-	@RequestMapping(value = "notify",method = RequestMethod.POST)
+	@RequestMapping(value = "dgq",method = RequestMethod.POST)
 	public ResponseEntity<?> notify(@RequestParam String message,@RequestParam String sign){
-		return new ResponseEntity<Object>(message, HttpStatus.OK);
+		String url =ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath("/");
+		return new ResponseEntity<Object>(url, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "getMyLuck",method = RequestMethod.GET)
