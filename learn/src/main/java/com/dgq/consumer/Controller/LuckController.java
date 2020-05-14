@@ -23,6 +23,7 @@ import org.springframework.web.context.ContextLoader;
 import com.dgq.consumer.service.LuckService;
 import com.dgq.consumer.util.HttpClient;
 import com.dgq.consumer.util.LuckUtil;
+import com.google.gson.Gson;
 
 @RestController
 public class LuckController{
@@ -41,6 +42,7 @@ public class LuckController{
 		Path jsonPsth = Paths.get(new File(test).getParent(),"webapps/update.json");
 		File file = jsonPsth.toFile();
 		BufferedReader reader = null;
+		Gson g = new Gson();
 		try {
 			reader = new BufferedReader(new FileReader(file));
 			String tempString = null;
@@ -61,7 +63,7 @@ public class LuckController{
 				}
 			}
 		}
-		return new ResponseEntity<Object>(laststr, HttpStatus.OK);
+		return new ResponseEntity<Object>(g.fromJson(laststr, Object.class), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "getMyLuck",method = RequestMethod.GET)
