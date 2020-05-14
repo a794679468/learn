@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -33,32 +35,33 @@ public class LuckController{
 	
 	@RequestMapping(value = "dgq",method = RequestMethod.POST)
 	public ResponseEntity<?> notify(@RequestParam String message,@RequestParam String sign){
-//		String path = this.getClass().getClassLoader().getResource("").getPath();
-//		String laststr = "";
-//		File file = new File(path).getParentFile();
-//		BufferedReader reader = null;
-//		try {
-//			reader = new BufferedReader(new FileReader(file));
-//			String tempString = null;
-//			// int line=1;
-//			while ((tempString = reader.readLine()) != null) {
-//				// System.out.println("line"+line+":"+tempString);
-//				laststr = laststr + tempString;
-//				// line++;
-//			}
-//			reader.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} finally {
-//			if (reader != null) {
-//				try {
-//					reader.close();
-//				} catch (IOException el) {
-//				}
-//			}
-//		}
 		String test = System.getProperty("user.dir");
-		return new ResponseEntity<Object>(test, HttpStatus.OK);
+//		String path = this.getClass().getClassLoader().getResource("").getPath();
+		String laststr = "";
+		Path jsonPsth = Paths.get(new File(test).getParent(),"webapps/update.json");
+		File file = jsonPsth.toFile();
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String tempString = null;
+			// int line=1;
+			while ((tempString = reader.readLine()) != null) {
+				// System.out.println("line"+line+":"+tempString);
+				laststr = laststr + tempString;
+				// line++;
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException el) {
+				}
+			}
+		}
+		return new ResponseEntity<Object>(laststr, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "getMyLuck",method = RequestMethod.GET)
