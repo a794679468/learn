@@ -64,7 +64,7 @@ public class LuckServiceImpl implements LuckService{
 			Map<String,Object> inparam = Maps.newHashMap();
 			inparam.put("everynper", period);
 			inparam.put("everyluck", c);
-			if(c.equals("{{redBall}}-{{blueBall}}")){
+			if("".equals(c)){
 				a++;
 				b = 0;
 				if(a == thisyear){
