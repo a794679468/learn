@@ -64,7 +64,7 @@ public class LuckServiceImpl implements LuckService{
 			Map<String,Object> inparam = Maps.newHashMap();
 			inparam.put("everynper", period);
 			inparam.put("everyluck", c);
-			if("".equals(c)){
+			if("".equals(c) || "{{redBall}}-{{blueBall}}".equals(c)){
 				a++;
 				b = 0;
 				if(a == thisyear){
@@ -123,6 +123,18 @@ public class LuckServiceImpl implements LuckService{
 
 	public List<Map<String, Object>> getAllLuck() {
 		return luckdao.getAllLuck();
+	}
+
+	@Override
+	public String getLastDayLuckPercent() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String gettheSecondRandomLuck() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
