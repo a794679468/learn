@@ -13,5 +13,9 @@ public interface LuckService{
 	public List<Map<String,Object>> getAllLuck();
 	
 	public String getRandomLuck();
+
+	public String gettheSecondRandomLuck();
+
+	public String getLastDayLuckPercent();
 	
 }
