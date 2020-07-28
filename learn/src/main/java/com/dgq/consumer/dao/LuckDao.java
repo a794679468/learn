@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 public interface LuckDao {
 
 	public boolean insertLuck(Map<String,Object> map);
