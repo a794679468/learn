@@ -23,6 +23,7 @@ import org.springframework.web.context.ContextLoader;
 import com.dgq.consumer.service.LuckService;
 import com.dgq.consumer.util.HttpClient;
 import com.dgq.consumer.util.LuckUtil;
+import com.dgq.consumer.util.ServerData;
 import com.google.gson.Gson;
 
 @RestController
@@ -34,36 +35,36 @@ public class LuckController{
 	@Autowired
 	private LuckService luckservice;
 	
-	@RequestMapping(value = "dgq",method = RequestMethod.POST)
-	public ResponseEntity<?> notify(@RequestParam String message,@RequestParam String sign){
-		String test = System.getProperty("user.dir");
-//		String path = this.getClass().getClassLoader().getResource("").getPath();
-		String laststr = "";
-		Path jsonPsth = Paths.get(new File(test).getParent(),"webapps/update.json");
-		File file = jsonPsth.toFile();
-		BufferedReader reader = null;
-		Gson g = new Gson();
-		try {
-			reader = new BufferedReader(new FileReader(file));
-			String tempString = null;
-			// int line=1;
-			while ((tempString = reader.readLine()) != null) {
-				// System.out.println("line"+line+":"+tempString);
-				laststr = laststr + tempString;
-				// line++;
-			}
-			reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException el) {
-				}
-			}
-		}
-		return new ResponseEntity<Object>(g.fromJson(laststr, Object.class), HttpStatus.OK);
+	@RequestMapping(value = "dgq",method = RequestMethod.GET)
+	public ResponseEntity<?> notify(String message,String sign){
+//		String test = System.getProperty("user.dir");
+////		String path = this.getClass().getClassLoader().getResource("").getPath();
+//		String laststr = "";
+//		Path jsonPsth = Paths.get(new File(test).getParent(),"webapps/update.json");
+//		File file = jsonPsth.toFile();
+//		BufferedReader reader = null;
+//		Gson g = new Gson();
+//		try {
+//			reader = new BufferedReader(new FileReader(file));
+//			String tempString = null;
+//			// int line=1;
+//			while ((tempString = reader.readLine()) != null) {
+//				// System.out.println("line"+line+":"+tempString);
+//				laststr = laststr + tempString;
+//				// line++;
+//			}
+//			reader.close();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		} finally {
+//			if (reader != null) {
+//				try {
+//					reader.close();
+//				} catch (IOException el) {
+//				}
+//			}
+//		}
+		return new ResponseEntity<Object>(ServerData.getServerTopCommandContent(), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "getMyLuck",method = RequestMethod.GET)
@@ -94,7 +95,7 @@ public class LuckController{
 	}
 	
 	public static void main(String[] args){
-		String hmtl = HttpClient.httpPostUrlForPdf("https://m.aicai.com/kjgg/detailAll.do?agentId=2335098&vt=5&gameId=101&issueNo=2019152");
+		String hmtl = HttpClient.httpPostUrlForPdf("https://m.aicai.com/kjgg/detailAll.do?agentId=2335098&vt=5&gameId=101&issueNo=2020066");
 		Document document = Jsoup.parse(hmtl);
 //		Iterator<Element> span = document.select("span[class=comm_ball red_ball]").iterator();
 		Elements spans= document.select("div[class=lotteryBall]").select("em");
@@ -106,8 +107,12 @@ public class LuckController{
 				b += els.text()+",";
 			}
 		}
-		System.out.println(b);
+		System.out.println("5555555----" +b + "7777777777");
 //		int c = 0;
 //		++c;
 	}
+	
+	
+	
+	
 }
