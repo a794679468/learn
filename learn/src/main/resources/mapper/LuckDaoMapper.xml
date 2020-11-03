@@ -55,8 +55,9 @@
 		select everynper,
 			   everyluck
 		from luck_data 
+		where 1=1
 		<if test="everynper != null and everynper != ''">
-		where everynper > #{everynper}
+		and everynper > #{everynper}
 		</if>
 	</select>
 </mapper>
