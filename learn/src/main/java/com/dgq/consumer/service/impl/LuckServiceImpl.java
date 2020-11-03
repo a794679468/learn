@@ -118,8 +118,8 @@ public class LuckServiceImpl implements LuckService{
 		return a;
 	}
 
-	public List<Map<String, Object>> getAllLuck() {
-		return luckdao.getAllLuck();
+	public List<Map<String, Object>> getAllLuck(Map<String, Object> param) {
+		return luckdao.getAllLuck(param);
 	}
 
 	@Override

@@ -75,8 +75,10 @@ public class LuckController{
 	}
 
 	@RequestMapping(value = "getAllLuck",method = RequestMethod.GET)
-	public ResponseEntity<?> getAllLuck(String period){
-		return new ResponseEntity<Object>(luckservice.getAllLuck(), HttpStatus.OK);
+	public ResponseEntity<?> getAllLuck(String everynper){
+		Map<String, Object> param =  new HashMap<String, Object>();
+		param.put("everynper", everynper);
+		return new ResponseEntity<Object>(luckservice.getAllLuck(param), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "test",method = RequestMethod.GET)

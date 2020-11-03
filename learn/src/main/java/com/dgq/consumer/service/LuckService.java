@@ -10,7 +10,7 @@ public interface LuckService{
 	
 	public Map<String,Object> getNewLuck();
 
-	public List<Map<String,Object>> getAllLuck();
+	public List<Map<String,Object>> getAllLuck(Map<String, Object> param);
 	
 	public String getRandomLuck();
 

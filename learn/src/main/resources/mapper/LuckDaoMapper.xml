@@ -51,9 +51,12 @@
 					   			luck_data)
 	</select>
 	
-	<select id="getAllLuck" resultType="resultMap">
+	<select id="getAllLuck" parameterType="resultMap" resultType="resultMap">
 		select everynper,
 			   everyluck
 		from luck_data 
+		<if test="everynper != null and everynper =! ''">
+		where everynper > #{everynper}
+		</if>
 	</select>
 </mapper>
