@@ -70,8 +70,11 @@ public class LuckController{
 			Map<String, Object> map =  new HashMap<String, Object>();
 			map.put("luckNumber", luckservice.getRandomLuck().trim());
 			mapList.add(map);
+			if(i > 1000){
+				break;
+			}
 		}
-		return new ResponseEntity<Object>(mapList, HttpStatus.OK);
+		return new ResponseEntity<Object>((num > 1000)?"我踏马你少点能吗":mapList, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "getAllLuck",method = RequestMethod.GET)
