@@ -65,16 +65,17 @@ public class LuckController{
 	
 	@RequestMapping(value = "getMyLuck",method = RequestMethod.GET)
 	public ResponseEntity<?> getLuckUse(@RequestParam(value="num", required = false,defaultValue = "1") int num){
+		
+		if(num > 1000){
+			return new ResponseEntity<Object>("我踏马你少点能吗", HttpStatus.OK);
+		}
 		List<Map<String, Object>> mapList =  new ArrayList<Map<String, Object>>();
 		for (int i = 0;i < num;i++){
 			Map<String, Object> map =  new HashMap<String, Object>();
 			map.put("luckNumber", luckservice.getRandomLuck().trim());
 			mapList.add(map);
-			if(i > 1000){
-				break;
-			}
 		}
-		return new ResponseEntity<Object>((num > 1000)?"我踏马你少点能吗":mapList, HttpStatus.OK);
+		return new ResponseEntity<Object>(mapList, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "getAllLuck",method = RequestMethod.GET)
