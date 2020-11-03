@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dgq.consumer.service.LuckService;
@@ -61,10 +62,14 @@ public class LuckController{
 	}
 	
 	@RequestMapping(value = "getMyLuck",method = RequestMethod.GET)
-	public ResponseEntity<?> getLuck(String period){
-		Map<String, Object> map =  new HashMap<String, Object>();
-		map.put("luckNumber", luckservice.getRandomLuck());
-		return new ResponseEntity<Object>(map, HttpStatus.OK);
+	public ResponseEntity<?> getLuckUse(@RequestParam(value="num", required = false,defaultValue = "1") int num){
+		Map<String, Object> mapList =  new HashMap<String, Object>();
+		for (int i = 0;i < num;i++){
+			Map<String, Object> map =  new HashMap<String, Object>();
+			map.put("luckNumber", luckservice.getRandomLuck().trim());
+			mapList.put("data", map);
+		}
+		return new ResponseEntity<Object>(mapList, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "getAllLuck",method = RequestMethod.GET)
