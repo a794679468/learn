@@ -1,6 +1,8 @@
 package com.dgq.consumer.Controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.jsoup.Jsoup;
@@ -63,11 +65,11 @@ public class LuckController{
 	
 	@RequestMapping(value = "getMyLuck",method = RequestMethod.GET)
 	public ResponseEntity<?> getLuckUse(@RequestParam(value="num", required = false,defaultValue = "1") int num){
-		Map<String, Object> mapList =  new HashMap<String, Object>();
+		List<Map<String, Object>> mapList =  new ArrayList<Map<String, Object>>();
 		for (int i = 0;i < num;i++){
 			Map<String, Object> map =  new HashMap<String, Object>();
 			map.put("luckNumber", luckservice.getRandomLuck().trim());
-			mapList.put("data", map);
+			mapList.add(map);
 		}
 		return new ResponseEntity<Object>(mapList, HttpStatus.OK);
 	}
