@@ -1,14 +1,7 @@
 package com.dgq.consumer.Controller;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -18,15 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.ContextLoader;
 
 import com.dgq.consumer.service.LuckService;
 import com.dgq.consumer.util.HttpClient;
-import com.dgq.consumer.util.LuckUtil;
 import com.dgq.consumer.util.ServerData;
-import com.google.gson.Gson;
 
 @RestController
 public class LuckController{
