@@ -1,6 +1,7 @@
 package com.dgq.consumer.Controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -61,7 +62,9 @@ public class LuckController{
 	
 	@RequestMapping(value = "getMyLuck",method = RequestMethod.GET)
 	public ResponseEntity<?> getLuck(String period){
-		return new ResponseEntity<Object>(luckservice.getRandomLuck(), HttpStatus.OK);
+		Map<String, Object> map =  new HashMap<String, Object>();
+		map.put("luckNumber", luckservice.getRandomLuck());
+		return new ResponseEntity<Object>(map, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "getAllLuck",method = RequestMethod.GET)
