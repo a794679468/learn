@@ -93,7 +93,7 @@ public class LuckController{
 	
 	@RequestMapping(value = "getRandomLuck",method = RequestMethod.GET)
 	public ResponseEntity<?> getRandomLuck() throws Exception{
-		return new ResponseEntity<Object>(new HashMap<String, Object>().put("luckNumber", luckservice.getRandomLuck()), HttpStatus.OK);
+		return new ResponseEntity<Object>(luckservice.getRandomLuck(), HttpStatus.OK);
 	}
 	
 	public static void main(String[] args){
