@@ -6,7 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -64,6 +66,7 @@ public class LuckController{
 //				}
 //			}
 //		}
+		
 		return new ResponseEntity<Object>(ServerData.getServerTopCommandContent(), HttpStatus.OK);
 	}
 	
@@ -91,7 +94,7 @@ public class LuckController{
 	
 	@RequestMapping(value = "getRandomLuck",method = RequestMethod.GET)
 	public ResponseEntity<?> getRandomLuck() throws Exception{
-		return new ResponseEntity<Object>(luckservice.getRandomLuck(), HttpStatus.OK);
+		return new ResponseEntity<Object>(new HashMap<String, Object>().put("luckNumber", luckservice.getRandomLuck()), HttpStatus.OK);
 	}
 	
 	public static void main(String[] args){
