@@ -55,7 +55,7 @@
 		select everynper,
 			   everyluck
 		from luck_data 
-		<if test="everynper != null and everynper =! ''">
+		<if test="everynper != null and everynper != ''">
 		where everynper > #{everynper}
 		</if>
 	</select>
