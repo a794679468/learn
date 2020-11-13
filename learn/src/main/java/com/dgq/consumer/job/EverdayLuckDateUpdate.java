@@ -22,7 +22,7 @@ public class EverdayLuckDateUpdate{
 	 * 定时任务每天定时插入最新数据
 	 * @throws Exception 
 	 */
-	@Scheduled(cron = "0 0 0 * * 1,3,5")
+//	@Scheduled(cron = "0 0 0 * * 1,3,5")
     public void scheduled() throws Exception{
 		luckservice.insert();
         logger.info("数据插入执行完成" + LocalDate.now());
