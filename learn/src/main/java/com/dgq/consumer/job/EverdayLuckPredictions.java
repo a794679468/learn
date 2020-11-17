@@ -27,6 +27,6 @@ public class EverdayLuckPredictions{
 	@Scheduled(cron = " 0 59 11 0/1 * ?")
     public void predictions() throws Exception{
 		String luck = LuckUtil.printCP("SSQ");
-        logger.info("测试周是否执行" + LocalDate.now());
+        logger.info("让我们敲希望的钟啊~");
     }
 }
