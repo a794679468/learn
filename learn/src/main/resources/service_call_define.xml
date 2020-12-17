@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+	<method>
+		<beanName>LuckService</beanName>
+		<methodName>getNewLuck</methodName>
+		<corePoolSize>50</corePoolSize>
+		<maxPoolSize>500</maxPoolSize>
+		<keepAliveTime>5</keepAliveTime>
+		<capacity>50</capacity>
+		<retryType>auto</retryType>
+		<retryTimes>3</retryTimes>
+		<sleepSecond>3,5,10</sleepSecond>
+		<timeout>10,10,10</timeout>
+	</method>
+	
+</service>
