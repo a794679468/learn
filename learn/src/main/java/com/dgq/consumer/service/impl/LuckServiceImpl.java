@@ -76,7 +76,11 @@ public class LuckServiceImpl implements LuckService{
 				}
 			}
 		}
-		logger.info("全部插入完成");
+		if(b > 0){
+			logger.info("全部插入完成");
+		}else{
+			logger.info("无数据更新");
+		}
 		return map;
 		
 	}
