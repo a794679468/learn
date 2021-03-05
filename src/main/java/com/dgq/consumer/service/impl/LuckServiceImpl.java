@@ -67,6 +67,11 @@ public class LuckServiceImpl implements LuckService{
 				if(a == thisyear){
 					continue;
 				}else if( a > thisyear){
+					if(b > 0){
+						logger.info("全部插入完成");
+					}else{
+						logger.info("无数据更新");
+					}
 					break;
 				}
 			}else{
@@ -76,11 +81,7 @@ public class LuckServiceImpl implements LuckService{
 				}
 			}
 		}
-		if(b > 0){
-			logger.info("全部插入完成");
-		}else{
-			logger.info("无数据更新");
-		}
+		
 		return map;
 		
 	}
