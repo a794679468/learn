@@ -61,17 +61,16 @@ public class LuckServiceImpl implements LuckService{
 			Map<String,Object> inparam = Maps.newHashMap();
 			inparam.put("everynper", period);
 			inparam.put("everyluck", c);
+			if(b > 0){
+				logger.info("全部插入完成");
+			}else{
+				logger.info("无数据更新");
+			}
 			if("".equals(c) || "{{redBall}}-{{blueBall}}".equals(c)){
 				a++;
-				b = 0;
 				if(a == thisyear){
 					continue;
 				}else if( a > thisyear){
-					if(b > 0){
-						logger.info("全部插入完成");
-					}else{
-						logger.info("无数据更新");
-					}
 					break;
 				}
 			}else{
